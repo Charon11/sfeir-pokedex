@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+- 9.11.1
+branches:
+  only:
+  - master
+before_script:
+- npm install -g firebase-tools
+script:
+- npm run dist
+after_success:
+- firebase deploy --token "$FIREBASE_TOKEN"
+env:
+  global:
+    secure: C+wUZf+4QhfDIsRtmrJLVJMy+22q+IL+YaWwURs/ExybWwdBWgNtg+t32QJeN2/iQGsWEZu+qfgOGbHKeddzLX+7r7PEs+tyDkaTjCuii2juKEAibo/cCyyYL95gYbcRi4mPrKIbdqo7pivkWt5W060ioxcX+/ynTWgx47QVt1yJsjHmy25fFNjNNS0BX/Kin20hix+xXH/wHp3eMlF310fYWIuuI3elH0sx9lU+S767FwFmBHuP4bi5cmeiQ8zjvlvEwIVq04mw1z4xEPLTpd47CXLsVmZPEiZWMTtjj3bHyjq603fvUbaokqvyjsGeliZ82SfCC6g1+21GXBM4qS2iSPs8Q2wehLiSvEoqLr6S0gFf8nKd5ZRoagoDvJdR9opC/mK4GZgg7rd372e+GdhMdEr29xcNRy//50vv/e0+DghEFF2UAd+vbR1KSUsfRl+7pgDAJFajvyNVbs8PNMdIfs/eP3zlmemqpNN4H0BGUxyIfF+CTYKapDtIAMiZTaIloU0pI1EBIFzbcvhUaL++tnPPANSgy0l/N0jOF5q0E1Eeeq5WS/8KyAjyAl8yvvTxqhM2YJ2mLTeLiNDGiu13zE19AFTZg55r8WHyFAZApq1oiGR69QfTw7xbTml4iFFDgi3qsbvsZlMf+kkiKSI0w2oQxDWuPxj4MzKlcdA=

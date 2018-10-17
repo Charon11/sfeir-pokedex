@@ -1,0 +1,16 @@
+<mat-card>
+  <mat-card-header>
+    <div mat-card-avatar
+         [style.height]="'100px'"
+         [style.width]="'100px'"
+         [style.background-image]="photoUrl"
+         [style.background-position]="'center'"
+         [style.background-size]="'cover'"></div>
+    <mat-card-header>
+      <mat-card-title>{{pokemon.name | translate}}</mat-card-title>
+      <mat-card-subtitle><span>Type : </span><span *ngFor="let type of pokemon.types"> {{type.type.name | translate}}</span></mat-card-subtitle>
+      <mat-card-subtitle><span>Taille : </span><span>{{pokemon.height / 10}}m</span></mat-card-subtitle>
+      <mat-card-subtitle><span>Poid : </span> <span>{{pokemon.weight / 10}}kg</span></mat-card-subtitle>
+    </mat-card-header>
+  </mat-card-header>
+</mat-card>

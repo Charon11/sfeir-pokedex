@@ -1,0 +1,30 @@
+#app-toolbar {
+  top: 0;
+  position: fixed;
+  width: 100%;
+  z-index: 99;
+}
+
+div {
+  padding-top: 80px
+}
+
+@media screen and (min-width: 960px) {
+
+  app-pokemon {
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+
+  app-pokemon:nth-child(3n), app-pokemon:last-child {
+    margin-right: 0;
+  }
+
+}
+
+@media screen and (max-width: 959px) {
+  app-pokemon {
+    width: 90%;
+    padding-bottom: 20px;
+  }
+}
