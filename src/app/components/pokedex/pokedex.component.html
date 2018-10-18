@@ -1,0 +1,3 @@
+<div fxLayout.gt-sm="row wrap" fxLayout.lt-md="column" fxLayoutAlign.gt-sm="center start" fxLayoutAlign.lt-md="start center">
+  <app-pokemon  fxFlex.gt-sm="30" *ngFor="let pokemon of pokemons | async" [pokemon]="pokemon" (click)="onCardClick(pokemon)"></app-pokemon>
+</div>

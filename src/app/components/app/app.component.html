@@ -1,4 +1,5 @@
-<mat-toolbar id="app-toolbar" color="primary">SFeir Pokedex</mat-toolbar>
-<div fxLayout.gt-sm="row wrap" fxLayout.lt-md="column" fxLayoutAlign.gt-sm="center start" fxLayoutAlign.lt-md="start center">
-  <app-pokemon  fxFlex.gt-sm="30" *ngFor="let pokemon of pokemons | async" [pokemon]="pokemon" (click)="onCardClick(pokemon)"></app-pokemon>
-</div>
+<mat-toolbar id="app-toolbar" color="primary"><img style="width: 50px; height: 50px" src="assets/images/pokeball.svg" alt="image">Sfeir Pokedex</mat-toolbar>
+<main>
+  <router-outlet></router-outlet>
+</main>
+

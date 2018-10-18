@@ -37,14 +37,15 @@
         "strategy": "performance"
       }
     },{
-      "name": "api-performance-image",
+      "name": "api-freshness-exclude",
       "urls": [
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/*.png"
+        "!https://pokeapi.co/api/v2/pokemon/bulbasaur/"
       ],
       "cacheConfig": {
+        "timeout": "50u",
         "maxSize": 151,
         "maxAge": "7d",
-        "strategy": "performance"
+        "strategy": "freshness"
       }
     },{
       "name": "api-performance-timeout",
@@ -65,17 +66,6 @@
       ],
       "cacheConfig": {
         "timeout": "500u",
-        "maxSize": 151,
-        "maxAge": "7d",
-        "strategy": "freshness"
-      }
-    },{
-      "name": "api-freshness-exclude",
-      "urls": [
-        "!https://pokeapi.co/api/v2/pokemon/bulbasaur/"
-      ],
-      "cacheConfig": {
-        "timeout": "50u",
         "maxSize": 151,
         "maxAge": "7d",
         "strategy": "freshness"

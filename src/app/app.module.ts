@@ -15,6 +15,9 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { PokemonDetailsDialogComponent } from './components/pokemon-details-dialog/pokemon-details-dialog.component';
+import { PokedexComponent } from './components/pokedex/pokedex.component';
+import { AppRoutingModule } from './app-routing.module';
+import { HomeComponent } from './components/home/home.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -24,7 +27,9 @@ export function createTranslateLoader(http: HttpClient) {
   declarations: [
     AppComponent,
     PokemonComponent,
-    PokemonDetailsDialogComponent
+    PokemonDetailsDialogComponent,
+    PokedexComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +47,8 @@ export function createTranslateLoader(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AppRoutingModule
   ],
   entryComponents: [
     PokemonDetailsDialogComponent
