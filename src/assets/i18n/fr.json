@@ -169,5 +169,11 @@
   "dark": "Ténèbre",
   "fairy": "Fée",
   "unknown": "Inconnu",
-  "shadow": "Obscur"
+  "shadow": "Obscur",
+  "speed": "Vitesse",
+  "hp": "Vie",
+  "attack": "Attaque",
+  "special-attack": "Attaque Spéciale",
+  "defense" : "Défense Spéciale",
+  "special-defense" : "Défense"
 }

@@ -1,0 +1,32 @@
+@media screen and (min-width: 960px) {
+
+  mat-card  {
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+
+  mat-card :nth-child(3n), mat-card :last-child {
+    margin-right: 0;
+  }
+
+  .sprite {
+    height: 125px;
+  }
+
+}
+
+@media screen and (max-width: 959px) {
+  mat-card  {
+    width: 90%;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+  }
+
+  .sprite {
+    height: 250px;
+  }
+}
+
+.sprite {
+
+}

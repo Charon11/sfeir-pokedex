@@ -1,3 +1,39 @@
-<p>
-  {{pokemon?.name | translate}}
-</p>
+<div>
+  <div fxLayout="column">
+    <h1 fxLayoutAlign="center center" mat-dialog-title>{{pokemon?.name | translate}}</h1>
+    <div mat-dialog-content>
+      <div fxLayout.gt-sm="row wrap" fxLayout.lt-md="column" fxLayoutAlign.gt-sm="center start"
+           fxLayoutAlign.lt-md="start center" class="sprite">
+        <div fxFlex.gt-sm="40" fxLayout="column" fxLayoutAlign="center center">
+          <div fxLayout="row wrap">
+            Normal
+          </div>
+          <div fxLayout="row wrap">
+            <img src="{{pokemon?.sprites.front_default}}" alt="image">
+            <img src="{{pokemon?.sprites.back_default}}" alt="image">
+          </div>
+        </div>
+        <div fxFlex.gt-sm="40" fxLayout="column" fxLayoutAlign="center center">
+          <div fxLayout="row wrap">
+            Chromatique
+          </div>
+          <div fxLayout="row wrap">
+            <img src="{{pokemon?.sprites.front_shiny}}" alt="image">
+            <img src="{{pokemon?.sprites.back_shiny}}" alt="image">
+          </div>
+        </div>
+      </div>
+      <h1 fxLayoutAlign="center center" mat-dialog-title>Stats</h1>
+      <div fxLayout.gt-sm="row wrap" fxLayout.lt-md="column" fxLayoutAlign.gt-sm="center start"
+           fxLayoutAlign.lt-md="start center">
+        <mat-card fxFlex.gt-sm="30" *ngFor="let stat of pokemon?.stats">
+          <mat-card-header fxLayoutAlign="center center">
+            <mat-card-title fxLayoutAlign="center center">{{stat.stat.name | translate}}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content fxLayoutAlign="center center">{{stat.base_stat}}</mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -18,6 +18,7 @@ import { PokemonDetailsDialogComponent } from './components/pokemon-details-dial
 import { PokedexComponent } from './components/pokedex/pokedex.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './components/home/home.component';
+import {NgxSpinnerModule} from 'ngx-spinner';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -39,6 +40,7 @@ export function createTranslateLoader(http: HttpClient) {
     MatDialogModule,
     HttpClientModule,
     FlexLayoutModule,
+    NgxSpinnerModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     TranslateModule.forRoot({
       loader: {

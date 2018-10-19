@@ -3,6 +3,8 @@ import {Observable} from 'rxjs';
 import {MatDialog} from '@angular/material';
 import {PokeapiService} from '../../services/pokeapi.service';
 import {PokemonDetailsDialogComponent} from '../pokemon-details-dialog/pokemon-details-dialog.component';
+import {map} from 'rxjs/operators';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-pokedex',
@@ -15,9 +17,13 @@ export class PokedexComponent implements OnInit {
 
 
   constructor(private _pokeApiService: PokeapiService,
+              private spinner: NgxSpinnerService,
               private dialog: MatDialog) {
-
-    this._pokemons = this._pokeApiService.getPokemons();
+    this.spinner.show()
+    this._pokemons = this._pokeApiService.getPokemons().pipe(map(res => {
+      this.spinner.hide()
+      return res;
+    }));
   }
 
   ngOnInit() {
@@ -31,7 +37,6 @@ export class PokedexComponent implements OnInit {
     const dialogRef = this.dialog.open(PokemonDetailsDialogComponent, {
       width: '90%'
     });
-    console.log(pokemon)
     dialogRef.componentInstance.pokemonName = pokemon.name;
   }
 

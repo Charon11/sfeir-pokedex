@@ -4,7 +4,7 @@ import {PokeapiService} from '../../services/pokeapi.service';
 @Component({
   selector: 'app-pokemon-details-dialog',
   templateUrl: './pokemon-details-dialog.component.html',
-  styles: []
+  styleUrls: ['./pokemon-details-dialog.component.css']
 })
 export class PokemonDetailsDialogComponent implements OnInit {
 
