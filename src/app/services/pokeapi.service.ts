@@ -12,8 +12,12 @@ export class PokeapiService {
   constructor(private _http: HttpClient) { }
 
   getPokemons(): Observable<Array<any>> {
+    return this.getRangePokemons(1, 30);
+  }
+
+  getRangePokemons(start: number, end: number): Observable<Array<any>> {
     const pokes: Observable<any>[] = [];
-    for (let i = 1; i <= 151; i++) {
+    for (let i = start; i <= end; i++) {
       pokes.push(this.getPokemon(i));
     }
     return forkJoin(pokes);

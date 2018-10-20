@@ -14,23 +14,34 @@ import {NgxSpinnerService} from 'ngx-spinner';
 export class PokedexComponent implements OnInit {
 
   private _pokemons: Observable<Array<any>>;
+  private _pokemonsArray: Array<any> = [];
 
 
   constructor(private _pokeApiService: PokeapiService,
               private spinner: NgxSpinnerService,
               private dialog: MatDialog) {
-    this.spinner.show()
-    this._pokemons = this._pokeApiService.getPokemons().pipe(map(res => {
-      this.spinner.hide()
-      return res;
-    }));
   }
 
   ngOnInit() {
+    this.spinner.show();
+    this._pokeApiService.getPokemons().subscribe(res => {
+      res.forEach(pokemon => this._pokemonsArray.push(pokemon));
+      this.spinner.hide();
+    });
+  }
+
+  onScroll() {
+    if ((this._pokemonsArray.length + 31) >= 151) {
+      this._pokeApiService.getRangePokemons(this._pokemonsArray.length + 1, 151)
+        .subscribe(res => res.forEach(pokemon => this._pokemonsArray.push(pokemon)));
+    } else {
+      this._pokeApiService.getRangePokemons(this._pokemonsArray.length + 1, this._pokemonsArray.length + 31)
+        .subscribe(res => res.forEach(pokemon => this._pokemonsArray.push(pokemon)));;
+    }
   }
 
   get pokemons() {
-    return this._pokemons;
+    return this._pokemonsArray;
   }
 
   onCardClick(pokemon: any) {

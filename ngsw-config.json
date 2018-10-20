@@ -19,7 +19,8 @@
       "updateMode": "prefetch",
       "resources": {
         "files": [
-          "/assets/**"
+          "/assets/**",
+          "/assets/**/*.*"
         ]
       }
     }
@@ -32,19 +33,18 @@
         "https://pokeapi.co/api/v2/pokemon/charmander/"
       ],
       "cacheConfig": {
-        "maxSize": 151,
+        "maxSize": 30,
         "maxAge": "7d",
         "strategy": "performance"
       }
     },{
       "name": "api-freshness-exclude",
       "urls": [
-        "!https://pokeapi.co/api/v2/pokemon/bulbasaur/"
+        "https://pokeapi.co/api/v2/pokemon/bulbasaur/"
       ],
       "cacheConfig": {
-        "timeout": "50u",
-        "maxSize": 151,
-        "maxAge": "7d",
+        "maxSize": 30,
+        "maxAge": "0u",
         "strategy": "freshness"
       }
     },{
@@ -54,7 +54,7 @@
       ],
       "cacheConfig": {
         "timeout": "50u",
-        "maxSize": 151,
+        "maxSize": 30,
         "maxAge": "7d",
         "strategy": "freshness"
       }
@@ -66,7 +66,7 @@
       ],
       "cacheConfig": {
         "timeout": "500u",
-        "maxSize": 151,
+        "maxSize": 30,
         "maxAge": "7d",
         "strategy": "freshness"
       }
