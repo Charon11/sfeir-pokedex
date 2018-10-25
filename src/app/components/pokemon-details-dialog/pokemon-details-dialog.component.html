@@ -9,8 +9,14 @@
             Normal
           </div>
           <div fxLayout="row wrap">
+            <i class="fa fa-male"></i>
             <img src="{{pokemon?.sprites.front_default}}" alt="image">
             <img src="{{pokemon?.sprites.back_default}}" alt="image">
+          </div>
+          <div fxLayout="row wrap" *ngIf="pokemon?.sprites.front_female && pokemon?.sprites.back_female">
+              <i class="fas fa-female"></i>
+              <img src="{{pokemon?.sprites.front_female}}" alt="image">
+              <img src="{{pokemon?.sprites.back_female}}" alt="image">
           </div>
         </div>
         <div fxFlex.gt-sm="40" fxLayout="column" fxLayoutAlign="center center">
@@ -18,8 +24,14 @@
             Chromatique
           </div>
           <div fxLayout="row wrap">
+            <i class="fa fa-male"></i>
             <img src="{{pokemon?.sprites.front_shiny}}" alt="image">
             <img src="{{pokemon?.sprites.back_shiny}}" alt="image">
+          </div>
+          <div fxLayout="row wrap" *ngIf="pokemon?.sprites.front_female && pokemon?.sprites.back_female">
+              <i class="fas fa-female"></i>
+              <img src="{{pokemon?.sprites.front_shiny_female}}" alt="image">
+              <img src="{{pokemon?.sprites.back_shiny_female}}" alt="image">
           </div>
         </div>
       </div>
