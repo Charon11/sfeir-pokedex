@@ -7,7 +7,7 @@ import {PokeapiService} from '../../services/pokeapi.service';
   styleUrls: ['./pokemon-details-dialog.component.css']
 })
 export class PokemonDetailsDialogComponent implements OnInit {
-
+  audio;
   public pokemonName: string;
   private _pokemon: any;
   constructor(private pokeapi: PokeapiService) {
@@ -17,6 +17,10 @@ export class PokemonDetailsDialogComponent implements OnInit {
   ngOnInit() {
     this.pokeapi.getPokemonByName(this.pokemonName).subscribe(data => {
       this._pokemon = data;
+      this.audio = new Audio();
+      this.audio.src = 'https://pokemoncries.com/cries-old/' + this._pokemon.id + '.mp3';
+      this.audio.load();
+      this.audio.play();
       // this._pokemon.moves.forEach(d => this.pokeapi.callUrl(d.move.url).subscribe());
     });
   }
