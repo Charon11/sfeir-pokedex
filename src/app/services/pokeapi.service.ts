@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {forkJoin, Observable} from 'rxjs';
@@ -9,8 +9,7 @@ import {NgxSpinnerService} from 'ngx-spinner';
 })
 export class PokeapiService {
 
-  constructor(private _http: HttpClient) {
-  }
+  constructor(private _http: HttpClient) { }
 
   getPokemons(): Observable<Array<any>> {
     return this.getRangePokemons(1, 30);
@@ -45,7 +44,7 @@ export class PokeapiService {
       )
     );
   }
-
+  
   callUrl(url: string) {
     return this._http.get(url);
   }

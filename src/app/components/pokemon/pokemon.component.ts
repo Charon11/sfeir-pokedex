@@ -37,4 +37,5 @@ export class PokemonComponent implements OnInit {
   get generation(): number {
     return this._generation;
   }
+
 }

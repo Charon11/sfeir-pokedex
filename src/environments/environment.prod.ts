@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  limitPokemon: 949
+  limitPokemon: 949,
 };
