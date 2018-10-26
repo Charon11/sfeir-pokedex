@@ -1,3 +1,9 @@
+i {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  margin-right: 10px;
+}
 @media screen and (min-width: 960px) {
 
   mat-card  {
@@ -9,9 +15,9 @@
     margin-right: 0;
   }
 
-  .sprite {
+  /*.sprite {
     height: 125px;
-  }
+  }*/
 
 }
 
@@ -25,8 +31,4 @@
   .sprite {
     height: 250px;
   }
-}
-
-.sprite {
-
 }

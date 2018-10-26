@@ -12,7 +12,7 @@ import {SwUpdate} from '@angular/service-worker';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   private _pokemons: Observable<Array<any>>;
 
   constructor(private _pokeApiService: PokeapiService,
@@ -48,7 +48,6 @@ export class AppComponent implements OnInit{
     const dialogRef = this.dialog.open(PokemonDetailsDialogComponent, {
       width: '90%'
     });
-    console.log(pokemon)
     dialogRef.componentInstance.pokemonName = pokemon.name;
   }
 
