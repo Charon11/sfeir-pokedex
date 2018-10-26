@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  pokemonCountByGeneration : [151, 251, 386, 493, 649, 721, 807]
 };
 
 /*

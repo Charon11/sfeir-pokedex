@@ -3,13 +3,12 @@ import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {forkJoin, Observable} from 'rxjs';
 import {NgxSpinnerService} from 'ngx-spinner';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PokeapiService {
-
-  private _pokemonCountByGeneration = [151, 251, 386, 493, 649, 721, 807];
 
   constructor(private _http: HttpClient) {
   }
@@ -36,7 +35,7 @@ export class PokeapiService {
 
   getPokemonGeneration(pokemonNumber: number): number {
     let generation = 1; // Count generation while iterating on array
-    for (const pokemonCount of this._pokemonCountByGeneration) {
+    for (const pokemonCount of environment.pokemonCountByGeneration) {
       if (pokemonNumber <= pokemonCount) {
         return generation;
       }
