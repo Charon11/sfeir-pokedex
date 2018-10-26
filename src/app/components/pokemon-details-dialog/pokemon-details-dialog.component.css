@@ -4,6 +4,11 @@ i {
   font-size: 20px;
   margin-right: 10px;
 }
+
+app-pokemon-moves-grid {
+  width: 100%;
+}
+
 @media screen and (min-width: 960px) {
 
   mat-card  {

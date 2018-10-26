@@ -1,17 +1,27 @@
 <table mat-table [dataSource]="moves">
   <ng-container matColumnDef="nom">
-    <th mat-header-cell *matHeaderCellDef> Nom </th>
+    <th mat-header-cell *matHeaderCellDef width="20"> Nom </th>
     <td mat-cell *matCellDef="let move"> {{move?.names | pokeTranslate:'fr':'name'}} </td>
   </ng-container>
 
-  <ng-container matColumnDef="type">
-    <th mat-header-cell *matHeaderCellDef> Type </th>
-    <td mat-cell *matCellDef="let move"> {{move?.damage_class?.details?.names | pokeTranslate:'fr':'name'}} </td>
+  <ng-container matColumnDef="move_type">
+    <th mat-header-cell *matHeaderCellDef  width="35">Type d'attaque</th>
+    <td mat-cell *matCellDef="let move"> {{move?.type?.details?.names | pokeTranslate:'fr':'name'}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="damage_type">
+    <th mat-header-cell *matHeaderCellDef width="35"> Type de dégats</th>
+    <td mat-cell *matCellDef="let move">
+      <span *ngIf="!move?.power">N/A</span>
+      <span *ngIf="move?.power">{{move?.damage_class?.details?.names | pokeTranslate:'fr':'name'}}</span>
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="puissance">
-    <th mat-header-cell *matHeaderCellDef> Puissance </th>
-    <td mat-cell *matCellDef="let move"> {{move?.power}} </td>
+    <th mat-header-cell *matHeaderCellDef width="10"> Puissance </th>
+    <td mat-cell *matCellDef="let move">
+      <span *ngIf="!move?.power">N/A</span>
+      <span *ngIf="move?.power">{{move?.power}}</span> </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="columns"></tr>

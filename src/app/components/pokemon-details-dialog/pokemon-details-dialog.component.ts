@@ -12,7 +12,6 @@ export class PokemonDetailsDialogComponent implements OnInit {
   audio;
   public pokemonName: string;
   private _pokemon: any;
-  private _moves: any[];
 
   constructor(private pokeapi: PokeapiService) {
 
@@ -23,7 +22,6 @@ export class PokemonDetailsDialogComponent implements OnInit {
       .pipe(
         tap(pokemon => {
             this._pokemon = pokemon;
-            this._moves = [...pokemon.moves];
           },
           tap(this.initAudio.bind(this)),
         )
@@ -41,9 +39,5 @@ export class PokemonDetailsDialogComponent implements OnInit {
 
   get pokemon() {
     return this._pokemon;
-  }
-
-  get moves(): any[] {
-    return this._moves;
   }
 }
