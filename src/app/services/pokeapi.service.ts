@@ -3,7 +3,6 @@ import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {forkJoin, Observable} from 'rxjs';
 import {NgxSpinnerService} from 'ngx-spinner';
-import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -33,16 +32,18 @@ export class PokeapiService {
     return this._http.get(`https://pokeapi.co/api/v2/pokemon/${name}/`);
   }
 
-  getPokemonGeneration(pokemonNumber: number): number {
-    let generation = 1; // Count generation while iterating on array
-    for (const pokemonCount of environment.pokemonCountByGeneration) {
-      if (pokemonNumber <= pokemonCount) {
-        return generation;
-      }
-      generation += 1;
-    }
-    // If no generation was returned yet, return generation 0 (generation undetermined)
-    return 0;
+  getPokemonSpecies(url: string): Observable<any> {
+    return this._http.get(url);
+  }
+
+  getPokemonGeneration(url: string): Observable<string> {
+    return this.getPokemonSpecies(url).pipe(
+      map (({ generation })  => {
+        const regex = /https:\/\/pokeapi\.co\/api\/v2\/generation\/(\d*)\//;
+          return (generation.url + '').match(regex)[1];
+        }
+      )
+    );
   }
 
   callUrl(url: string) {
