@@ -3,8 +3,9 @@ import {Observable} from 'rxjs';
 import {MatDialog} from '@angular/material';
 import {PokeapiService} from '../../services/pokeapi.service';
 import {PokemonDetailsDialogComponent} from '../pokemon-details-dialog/pokemon-details-dialog.component';
-import {map} from 'rxjs/operators';
 import {NgxSpinnerService} from 'ngx-spinner';
+import { environment } from '../../../environments/environment';
+
 
 @Component({
   selector: 'app-pokedex',
@@ -31,12 +32,12 @@ export class PokedexComponent implements OnInit {
   }
 
   onScroll() {
-    if ((this._pokemonsArray.length + 31) >= 151) {
-      this._pokeApiService.getRangePokemons(this._pokemonsArray.length + 1, 151)
+    if ((this._pokemonsArray.length + 31) >= environment.limitPokemon) {
+      this._pokeApiService.getRangePokemons(this._pokemonsArray.length + 1, environment.limitPokemon)
         .subscribe(res => res.forEach(pokemon => this._pokemonsArray.push(pokemon)));
     } else {
       this._pokeApiService.getRangePokemons(this._pokemonsArray.length + 1, this._pokemonsArray.length + 31)
-        .subscribe(res => res.forEach(pokemon => this._pokemonsArray.push(pokemon)));;
+        .subscribe(res => res.forEach(pokemon => this._pokemonsArray.push(pokemon)));
     }
   }
 
