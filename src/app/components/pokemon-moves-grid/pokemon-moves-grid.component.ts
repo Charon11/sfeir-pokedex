@@ -6,27 +6,27 @@ import {PokeapiService} from '../../services/pokeapi.service';
 @Component({
   selector: 'app-pokemon-moves-grid',
   templateUrl: './pokemon-moves-grid.component.html',
-  styles: [],
+  styleUrls: ['./pokemon-moves-grid.component.css'],
 })
 export class PokemonMovesGridComponent implements OnInit {
 
   private _moves: any[];
-  private _columns: string[];
+  private readonly _columns: string[];
 
   @Input()
   set moves(data: any[]) {
     if (data) {
-      // this._moves = data;
-      data.map(move => {
-        console.log(move);
-        return move.move.url;
-      }).filter(move => !move);
-
       forkJoin(data.map(move => this.pokeapi.callUrl(move.move.url)))
         .pipe(
           tap(moves => this._moves = moves),
-          flatMap(() => forkJoin(this._moves.map((move: any) => this.pokeapi.callUrl(move.damage_class.url)))),
-          tap(damageClasses => this._moves.forEach((move, index) => move.damage_class.details = damageClasses[index])),
+          flatMap(() =>
+            forkJoin(this._moves.map((move: any) =>
+              forkJoin(this.pokeapi.callUrl(move.damage_class.url),
+                this.pokeapi.callUrl(move.type.url))))),
+          tap(moveData => this._moves.forEach((move, index) => {
+            move.damage_class.details = moveData[index][0];
+            move.type.details = moveData[index][1];
+          })),
         )
         .subscribe();
     }
@@ -41,7 +41,7 @@ export class PokemonMovesGridComponent implements OnInit {
   }
 
   constructor(private pokeapi: PokeapiService) {
-    this._columns = ['nom', 'type', 'puissance'];
+    this._columns = ['nom', 'move_type', 'damage_type', 'puissance'];
   }
 
   ngOnInit() {
