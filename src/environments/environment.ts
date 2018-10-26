@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  limitPokemon: 949,
+  pokemonCountByGeneration : [151, 251, 386, 493, 649, 721, 807],
+  limitPokemon: 949
 };
 
 /*

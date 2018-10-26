@@ -29,4 +29,8 @@ export class PokemonComponent implements OnInit {
   get pokemon() {
     return this._pokemon;
   }
+
+  get generation(): number {
+    return this._pokeapiService.getPokemonGeneration(this._pokemon.id);
+  }
 }
