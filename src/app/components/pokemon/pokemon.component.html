@@ -11,6 +11,8 @@
       <mat-card-subtitle><span>Type : </span><span *ngFor="let type of pokemon.types"> {{type.type.name | translate}}</span></mat-card-subtitle>
       <mat-card-subtitle><span>Taille : </span><span>{{pokemon.height / 10}}m</span></mat-card-subtitle>
       <mat-card-subtitle><span>Poids : </span> <span>{{pokemon.weight / 10}}kg</span></mat-card-subtitle>
+      <mat-card-subtitle><span>#</span> <span>{{(pokemon.id + "").padStart(3, "0")}}</span></mat-card-subtitle>
+      <mat-card-subtitle><span>Generation : </span> <span>{{generation}}</span></mat-card-subtitle>
     </mat-card-header>
   </mat-card-header>
 </mat-card>
