@@ -1,16 +1,18 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {map} from 'rxjs/operators';
 import {forkJoin, Observable} from 'rxjs';
-import {NgxSpinnerService} from 'ngx-spinner';
 import {environment} from '../../environments/environment';
+import {shareReplay} from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PokeapiService {
 
+  private readonly _urlCache: {[key: string]: Observable<any>};
+
   constructor(private _http: HttpClient) {
+    this._urlCache = {};
   }
 
   getPokemons(): Observable<Array<any>> {
@@ -26,11 +28,11 @@ export class PokeapiService {
   }
 
   getPokemon(id: number): Observable<any> {
-    return this._http.get(`https://pokeapi.co/api/v2/pokemon/${id.toString()}/`);
+    return this.callUrl(`https://pokeapi.co/api/v2/pokemon/${id.toString()}/`);
   }
 
   getPokemonByName(name: string): Observable<any> {
-    return this._http.get(`https://pokeapi.co/api/v2/pokemon/${name}/`);
+    return this.callUrl(`https://pokeapi.co/api/v2/pokemon/${name}/`);
   }
 
   getPokemonGeneration(pokemonNumber: number): number {
@@ -45,7 +47,10 @@ export class PokeapiService {
     return 0;
   }
 
-  callUrl(url: string) {
-    return this._http.get(url);
+  callUrl(url: string): Observable<any> {
+    if (!this._urlCache[url]) {
+      this._urlCache[url] = this._http.get<any>(url).pipe(shareReplay());
+    }
+    return this._urlCache[url];
   }
 }
