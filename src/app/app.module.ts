@@ -20,6 +20,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './components/home/home.component';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
+import { PokeTranslatePipe } from './pipes/poke-translate.pipe';
+import {MatChipsModule, MatExpansionModule, MatTableModule} from '@angular/material';
+import { PokemonMovesGridComponent } from './components/pokemon-moves-grid/pokemon-moves-grid.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -31,7 +34,9 @@ export function createTranslateLoader(http: HttpClient) {
     PokemonComponent,
     PokemonDetailsDialogComponent,
     PokedexComponent,
-    HomeComponent
+    HomeComponent,
+    PokeTranslatePipe,
+    PokemonMovesGridComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +45,9 @@ export function createTranslateLoader(http: HttpClient) {
     MatCardModule,
     MatButtonModule,
     MatDialogModule,
+    MatChipsModule,
+    MatExpansionModule,
+    MatTableModule,
     HttpClientModule,
     FlexLayoutModule,
     NgxSpinnerModule,
