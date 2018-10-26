@@ -1,6 +1,9 @@
-# SfeirPokedex
+# Sfeir Pokedex
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.3.
+This project is used to present Progressive Web App with Angular during a Beyind Keyboard @ SFEIR Luxembourg.
+It used https://pokeapi.co/ as api.
+It display the list of all the Pokemons, you can see details of a Pokemon by clicking on card.
 
 ## Development server
 
