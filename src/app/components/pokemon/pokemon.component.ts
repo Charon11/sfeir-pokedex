@@ -11,6 +11,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 export class PokemonComponent implements OnInit {
 
   @Input('pokemon') private _pokemon: any;
+  private _generation: any;
 
   constructor(private _sanitizer: DomSanitizer,
               private _pokeapiService: PokeapiService) {
@@ -19,6 +20,9 @@ export class PokemonComponent implements OnInit {
 
   ngOnInit() {
     // this._pokeapiService.getPokemonByUrl(this.url).subscribe(value => this._pokemon = value);
+    this._pokeapiService.getPokemonGeneration(this._pokemon.species.url).subscribe(
+      generation => this._generation = generation
+    );
   }
 
   public get photoUrl() {
@@ -29,4 +33,9 @@ export class PokemonComponent implements OnInit {
   get pokemon() {
     return this._pokemon;
   }
+
+  get generation(): number {
+    return this._generation;
+  }
+
 }
