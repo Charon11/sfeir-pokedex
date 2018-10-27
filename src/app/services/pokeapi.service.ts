@@ -40,4 +40,18 @@ export class PokeapiService {
     }
     return this._urlCache[url];
   }
+  
+  getPokemonSpecies(url: string): Observable<any> {
+    return this.callUrl(url);
+  }
+
+  getPokemonGeneration(url: string): Observable<string> {
+    return this.getPokemonSpecies(url).pipe(
+      map (({ generation })  => {
+        const regex = /https:\/\/pokeapi\.co\/api\/v2\/generation\/(\d*)\//;
+          return (generation.url + '').match(regex)[1];
+        }
+      )
+    );
+  }
 }
