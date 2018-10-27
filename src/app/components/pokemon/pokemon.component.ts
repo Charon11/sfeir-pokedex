@@ -1,6 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {PokeapiService} from '../../services/pokeapi.service';
-import {Observable} from 'rxjs';
 import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
@@ -11,18 +9,12 @@ import {DomSanitizer} from '@angular/platform-browser';
 export class PokemonComponent implements OnInit {
 
   @Input('pokemon') private _pokemon: any;
-  private _generation: any;
 
-  constructor(private _sanitizer: DomSanitizer,
-              private _pokeapiService: PokeapiService) {
+  constructor(private _sanitizer: DomSanitizer) {
 
   }
 
   ngOnInit() {
-    // this._pokeapiService.getPokemonByUrl(this.url).subscribe(value => this._pokemon = value);
-    this._pokeapiService.getPokemonGeneration(this._pokemon.species.url).subscribe(
-      generation => this._generation = generation
-    );
   }
 
   public get photoUrl() {
@@ -34,8 +26,5 @@ export class PokemonComponent implements OnInit {
     return this._pokemon;
   }
 
-  get generation(): number {
-    return this._generation;
-  }
 
 }

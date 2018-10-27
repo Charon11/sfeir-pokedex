@@ -1,22 +1,32 @@
 <div>
   <div fxLayout="column">
-    <h1 fxLayoutAlign="center center" mat-dialog-title>{{pokemon?.name | translate}}</h1>
+    <h1 fxLayoutAlign="center center" mat-dialog-title>
+      <span style="color: rgba(0,0,0,.54); margin-right: 10px" fxLayoutAlign="center center">
+        #{{pokemon?.id}}</span>
+      {{pokemon?.name | translate}}
+      <span style="color: rgba(0,0,0,.54); margin-left: 10px" fxLayoutAlign="center center">
+        G {{generation}}
+      </span>
+    </h1>
     <div mat-dialog-content>
       <div fxLayout.gt-sm="row wrap" fxLayout.lt-md="column" fxLayoutAlign.gt-sm="center start"
-           fxLayoutAlign.lt-md="start center" class="sprite">
+           fxLayoutAlign.lt-md="start center"
+           [ngClass]="{ 'sprite-large': (pokemon?.sprites.front_female && pokemon?.sprites.back_female),
+                      'sprite': !(pokemon?.sprites.front_female && pokemon?.sprites.back_female)
+                    }">
         <div fxFlex.gt-sm="40" fxLayout="column" fxLayoutAlign="center center">
           <div fxLayout="row wrap">
             Normal
           </div>
           <div fxLayout="row wrap">
-            <i class="fa fa-male"></i>
+            <i *ngIf="pokemon?.sprites.front_female && pokemon?.sprites.back_female" class="fa fa-mars"></i>
             <img src="{{pokemon?.sprites.front_default}}" alt="image">
             <img src="{{pokemon?.sprites.back_default}}" alt="image">
           </div>
           <div fxLayout="row wrap" *ngIf="pokemon?.sprites.front_female && pokemon?.sprites.back_female">
-              <i class="fas fa-female"></i>
-              <img src="{{pokemon?.sprites.front_female}}" alt="image">
-              <img src="{{pokemon?.sprites.back_female}}" alt="image">
+            <i class="fas fa-venus"></i>
+            <img src="{{pokemon?.sprites.front_female}}" alt="image">
+            <img src="{{pokemon?.sprites.back_female}}" alt="image">
           </div>
         </div>
         <div fxFlex.gt-sm="40" fxLayout="column" fxLayoutAlign="center center">
@@ -24,14 +34,14 @@
             Chromatique
           </div>
           <div fxLayout="row wrap">
-            <i class="fa fa-male"></i>
+            <i *ngIf="pokemon?.sprites.front_female && pokemon?.sprites.back_female" class="fa fa-mars"></i>
             <img src="{{pokemon?.sprites.front_shiny}}" alt="image">
             <img src="{{pokemon?.sprites.back_shiny}}" alt="image">
           </div>
           <div fxLayout="row wrap" *ngIf="pokemon?.sprites.front_female && pokemon?.sprites.back_female">
-              <i class="fas fa-female"></i>
-              <img src="{{pokemon?.sprites.front_shiny_female}}" alt="image">
-              <img src="{{pokemon?.sprites.back_shiny_female}}" alt="image">
+            <i class="fas fa-venus"></i>
+            <img src="{{pokemon?.sprites.front_shiny_female}}" alt="image">
+            <img src="{{pokemon?.sprites.back_shiny_female}}" alt="image">
           </div>
         </div>
       </div>
@@ -45,7 +55,7 @@
           <mat-card-content fxLayoutAlign="center center">{{stat.base_stat}}</mat-card-content>
         </mat-card>
       </div>
-      <h1 mat-dialog-title></h1>
+      <!-- <h1 mat-dialog-title></h1>
       <mat-accordion>
         <mat-expansion-panel>
           <mat-expansion-panel-header>
@@ -56,6 +66,7 @@
           <app-pokemon-moves-grid [moves]="pokemon?.moves"></app-pokemon-moves-grid>
         </mat-expansion-panel>
       </mat-accordion>
+      -->
     </div>
   </div>
 </div>

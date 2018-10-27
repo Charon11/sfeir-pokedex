@@ -11,7 +11,7 @@ app-pokemon-moves-grid {
 
 @media screen and (min-width: 960px) {
 
-  mat-card  {
+  mat-card {
     margin-right: 20px;
     margin-bottom: 20px;
   }
@@ -27,7 +27,7 @@ app-pokemon-moves-grid {
 }
 
 @media screen and (max-width: 959px) {
-  mat-card  {
+  mat-card {
     width: 90%;
     padding-bottom: 20px;
     margin-bottom: 20px;
@@ -36,4 +36,15 @@ app-pokemon-moves-grid {
   .sprite {
     height: 250px;
   }
+
+  .sprite-large {
+    height: 500px;
+  }
+}
+
+.mat-expansion-panel {
+  margin-bottom: 10px;
+}
+.mat-accordion > .mat-expansion-panel-spacing:last-child, .mat-accordion > :last-child:not(.mat-expansion-panel) .mat-expansion-panel-spacing {
+  margin-bottom: 10px;
 }

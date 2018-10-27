@@ -12,6 +12,7 @@ export class PokemonDetailsDialogComponent implements OnInit {
   audio;
   public pokemonName: string;
   private _pokemon: any;
+  private _generation: any;
 
   constructor(private pokeapi: PokeapiService) {
 
@@ -22,12 +23,19 @@ export class PokemonDetailsDialogComponent implements OnInit {
       .pipe(
         tap(pokemon => {
             this._pokemon = pokemon;
+            this.getGeneration();
           },
           tap(this.initAudio.bind(this)),
         )
       )
       .subscribe();
 
+  }
+
+  private getGeneration() {
+    this.pokeapi.getPokemonGeneration(this._pokemon.species.url).subscribe(
+      generation => this._generation = generation
+    );
   }
 
   private initAudio() {
@@ -39,5 +47,9 @@ export class PokemonDetailsDialogComponent implements OnInit {
 
   get pokemon() {
     return this._pokemon;
+  }
+
+  get generation(): number {
+    return this._generation;
   }
 }
