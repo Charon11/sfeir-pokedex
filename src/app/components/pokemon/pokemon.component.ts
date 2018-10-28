@@ -12,8 +12,7 @@ export class PokemonComponent implements OnInit {
 
   @Input('pokemon') private _pokemon: any;
 
-  constructor(private _sanitizer: DomSanitizer,
-              private _pokeapiService: PokeapiService) {
+  constructor(private _sanitizer: DomSanitizer) {
 
   }
 

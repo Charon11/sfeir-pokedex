@@ -1,8 +1,12 @@
-div {
+mat-form-field {
   padding-top: 80px
 }
 
 @media screen and (min-width: 960px) {
+
+  mat-form-field {
+    width: calc(90% + 40px);
+  }
 
   app-pokemon {
     margin-right: 20px;
@@ -16,6 +20,10 @@ div {
 }
 
 @media screen and (max-width: 959px) {
+  mat-form-field {
+    width: 90%;
+  }
+
   app-pokemon {
     width: 90%;
     padding-bottom: 20px;
