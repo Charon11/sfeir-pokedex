@@ -20,6 +20,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './components/home/home.component';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
+import { SearchPipe } from './pipes/search.pipe';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
 import { PokeTranslatePipe } from './pipes/poke-translate.pipe';
 import {MatChipsModule, MatExpansionModule, MatTableModule} from '@angular/material';
 import { PokemonMovesGridComponent } from './components/pokemon-moves-grid/pokemon-moves-grid.component';
@@ -35,6 +38,7 @@ export function createTranslateLoader(http: HttpClient) {
     PokemonDetailsDialogComponent,
     PokedexComponent,
     HomeComponent,
+    SearchPipe,
     PokeTranslatePipe,
     PokemonMovesGridComponent
   ],
@@ -44,6 +48,8 @@ export function createTranslateLoader(http: HttpClient) {
     MatToolbarModule,
     MatCardModule,
     MatButtonModule,
+    MatInputModule,
+    MatFormFieldModule,
     MatDialogModule,
     MatChipsModule,
     MatExpansionModule,
