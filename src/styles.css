@@ -3,3 +3,18 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: 'Roboto', sans-serif; background: #ececec; }
+
+@media screen and (min-width: 960px) {
+
+  .responsive-card {
+    width: 90%;
+    max-width: 90vw !important;
+  }
+}
+
+@media screen and (max-width: 959px) {
+  .responsive-card {
+    width: 95%;
+    max-width: 95vw !important;;
+  }
+}

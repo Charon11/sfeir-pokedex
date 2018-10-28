@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {forkJoin} from 'rxjs';
 import {flatMap, tap} from 'rxjs/operators';
 import {PokeapiService} from '../../services/pokeapi.service';
+import {BreakpointObserver} from "@angular/cdk/layout";
 
 @Component({
   selector: 'app-pokemon-moves-grid',
@@ -11,7 +12,7 @@ import {PokeapiService} from '../../services/pokeapi.service';
 export class PokemonMovesGridComponent implements OnInit {
 
   private _moves: any[];
-  private readonly _columns: string[];
+  private _columns: string[];
 
   @Input()
   set moves(data: any[]) {
@@ -40,11 +41,18 @@ export class PokemonMovesGridComponent implements OnInit {
     return this._columns;
   }
 
-  constructor(private pokeapi: PokeapiService) {
+  constructor(private pokeapi: PokeapiService, private breakpointObserver: BreakpointObserver) {
     this._columns = ['nom', 'move_type', 'damage_type', 'puissance'];
   }
 
   ngOnInit() {
+    this.breakpointObserver.observe(['(max-width: 960px)']).subscribe(result => {
+      console.log('toto');
+      this._columns = result.matches ?
+        ['nom', 'puissance'] :
+        ['nom', 'move_type', 'damage_type', 'puissance'];
+    });
+
   }
 
 }
