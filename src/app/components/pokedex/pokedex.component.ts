@@ -47,7 +47,7 @@ export class PokedexComponent implements OnInit {
 
   onCardClick(pokemon: any) {
     const dialogRef = this.dialog.open(PokemonDetailsDialogComponent, {
-      width: '90%'
+      panelClass: ['responsive-card'],
     });
     dialogRef.componentInstance.pokemonName = pokemon.name;
   }
