@@ -1,6 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {PokeapiService} from '../../services/pokeapi.service';
-import {Observable} from 'rxjs';
 import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
@@ -17,7 +15,6 @@ export class PokemonComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this._pokeapiService.getPokemonByUrl(this.url).subscribe(value => this._pokemon = value);
   }
 
   public get photoUrl() {
@@ -28,4 +25,6 @@ export class PokemonComponent implements OnInit {
   get pokemon() {
     return this._pokemon;
   }
+
+
 }
