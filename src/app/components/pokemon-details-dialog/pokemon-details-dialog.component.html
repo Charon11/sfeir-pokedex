@@ -3,7 +3,7 @@
     <h1 fxLayoutAlign="center center" mat-dialog-title>
       <span style="color: rgba(0,0,0,.54); margin-right: 10px" fxLayoutAlign="center center">
         #{{pokemon?.id}}</span>
-      {{pokemon?.name | translate}}
+      {{'pokemons.' + pokemon?.name | translate}}
       <span style="color: rgba(0,0,0,.54); margin-left: 10px" fxLayoutAlign="center center">
         G {{generation}}
       </span>
@@ -50,7 +50,7 @@
            fxLayoutAlign.lt-md="start center">
         <mat-card fxFlex.gt-sm="30" *ngFor="let stat of pokemon?.stats">
           <mat-card-header fxLayoutAlign="center center">
-            <mat-card-title fxLayoutAlign="center center">{{stat.stat.name | translate}}</mat-card-title>
+            <mat-card-title fxLayoutAlign="center center">{{"misc."+stat.stat.name | translate}}</mat-card-title>
           </mat-card-header>
           <mat-card-content fxLayoutAlign="center center">{{stat.base_stat}}</mat-card-content>
         </mat-card>
