@@ -8,7 +8,6 @@ before_script:
 - npm install -g firebase-tools
 script:
 - npm run dist
-after_success:
 - firebase deploy --token "$FIREBASE_TOKEN"
 env:
   global:
