@@ -17,7 +17,6 @@ export class PokemonDetailsDialogComponent implements OnInit {
   ngOnInit() {
     this.pokeapi.getPokemonByName(this.pokemonName).subscribe(data => {
       this._pokemon = data;
-      // this._pokemon.moves.forEach(d => this.pokeapi.callUrl(d.move.url).subscribe());
     });
   }
 

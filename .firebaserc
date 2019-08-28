@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "sfeir-pokedex"
+  },
+  "targets": {
+    "sfeir-pokedex": {
+      "hosting": {
+        "sfeir-pokedex": [
+          "sfeir-pokedex"
+        ]
+      }
+    }
   }
 }

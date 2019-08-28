@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Observable} from 'rxjs';
 import {MatDialog} from '@angular/material';
 import {PokeapiService} from '../../services/pokeapi.service';
 import {PokemonDetailsDialogComponent} from '../pokemon-details-dialog/pokemon-details-dialog.component';
-import {map} from 'rxjs/operators';
 import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
@@ -13,7 +11,6 @@ import {NgxSpinnerService} from 'ngx-spinner';
 })
 export class PokedexComponent implements OnInit {
 
-  private _pokemons: Observable<Array<any>>;
   private _pokemonsArray: Array<any> = [];
 
 
@@ -36,7 +33,7 @@ export class PokedexComponent implements OnInit {
         .subscribe(res => res.forEach(pokemon => this._pokemonsArray.push(pokemon)));
     } else {
       this._pokeApiService.getRangePokemons(this._pokemonsArray.length + 1, this._pokemonsArray.length + 31)
-        .subscribe(res => res.forEach(pokemon => this._pokemonsArray.push(pokemon)));;
+        .subscribe(res => res.forEach(pokemon => this._pokemonsArray.push(pokemon)));
     }
   }
 
