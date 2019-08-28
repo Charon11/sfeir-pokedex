@@ -37,13 +37,25 @@
         "maxAge": "7d",
         "strategy": "performance"
       }
-    },{
+    },
+    {
+      "name": "api-freshness-exclude",
+      "urls": [
+        "https://pokeapi.co/api/v2/pokemon/bulbasaur/"
+      ],
+      "cacheConfig": {
+        "maxSize": 30,
+        "maxAge": "0u",
+        "strategy": "freshness"
+      }
+    },
+    {
       "name": "api-performance-timeout",
       "urls": [
         "https://pokeapi.co/api/v2/pokemon/squirtle/"
       ],
       "cacheConfig": {
-        "timeout": "50u",
+        "timeout": "10u",
         "maxSize": 30,
         "maxAge": "7d",
         "strategy": "freshness"
@@ -52,22 +64,13 @@
     {
       "name": "api-freshness",
       "urls": [
+        "https://pokeapi.co/api/v2/pokemon",
         "https://pokeapi.co/api/v2/**/**"
       ],
       "cacheConfig": {
         "timeout": "500u",
         "maxSize": 30,
         "maxAge": "7d",
-        "strategy": "freshness"
-      }
-    },{
-      "name": "api-freshness-exclude",
-      "urls": [
-        "https://pokeapi.co/api/v2/pokemon/bulbasaur/"
-      ],
-      "cacheConfig": {
-        "maxSize": 30,
-        "maxAge": "0u",
         "strategy": "freshness"
       }
     }

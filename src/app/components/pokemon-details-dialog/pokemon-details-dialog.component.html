@@ -1,6 +1,6 @@
 <div>
   <div fxLayout="column">
-    <h1 fxLayoutAlign="center center" mat-dialog-title>{{pokemon?.name | translate}}</h1>
+    <h1 fxLayoutAlign="center center" mat-dialog-title>{{'pokemons.' +pokemon?.name | translate}}</h1>
     <div mat-dialog-content>
       <div fxLayout.gt-sm="row wrap" fxLayout.lt-md="column" fxLayoutAlign.gt-sm="center start"
            fxLayoutAlign.lt-md="start center" class="sprite">
@@ -9,8 +9,8 @@
             Normal
           </div>
           <div fxLayout="row wrap">
-            <img src="{{pokemon?.sprites.front_default}}" alt="image">
-            <img src="{{pokemon?.sprites.back_default}}" alt="image">
+            <img *ngIf="pokemon?.sprites.front_default" src="{{pokemon?.sprites.front_default}}" alt="image">
+            <img *ngIf="pokemon?.sprites.back_default" src="{{pokemon?.sprites.back_default}}" alt="image">
           </div>
         </div>
         <div fxFlex.gt-sm="40" fxLayout="column" fxLayoutAlign="center center">
@@ -18,8 +18,8 @@
             Chromatique
           </div>
           <div fxLayout="row wrap">
-            <img src="{{pokemon?.sprites.front_shiny}}" alt="image">
-            <img src="{{pokemon?.sprites.back_shiny}}" alt="image">
+            <img *ngIf="pokemon?.sprites.front_shiny" src="{{pokemon?.sprites.front_shiny}}" alt="image">
+            <img *ngIf="pokemon?.sprites.back_shiny" src="{{pokemon?.sprites.back_shiny}}" alt="image">
           </div>
         </div>
       </div>
@@ -28,7 +28,7 @@
            fxLayoutAlign.lt-md="start center">
         <mat-card fxFlex.gt-sm="30" *ngFor="let stat of pokemon?.stats">
           <mat-card-header fxLayoutAlign="center center">
-            <mat-card-title fxLayoutAlign="center center">{{stat.stat.name | translate}}</mat-card-title>
+            <mat-card-title fxLayoutAlign="center center">{{'misc.' + stat.stat.name | translate}}</mat-card-title>
           </mat-card-header>
           <mat-card-content fxLayoutAlign="center center">{{stat.base_stat}}</mat-card-content>
         </mat-card>

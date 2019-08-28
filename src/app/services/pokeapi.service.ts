@@ -1,31 +1,41 @@
-import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {forkJoin, Observable} from 'rxjs';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {forkJoin, Observable, of} from 'rxjs';
+import {exhaustMap, map} from 'rxjs/operators';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PokeapiService {
 
-  constructor(private _http: HttpClient) { }
+  private url = 'https://pokeapi.co/api/v2/pokemon';
 
-  getPokemons(): Observable<Array<any>> {
-    return this.getRangePokemons(1, 30);
+  constructor(private _http: HttpClient) {
   }
 
-  getRangePokemons(start: number, end: number): Observable<Array<any>> {
-    const pokes: Observable<any>[] = [];
-    for (let i = start; i <= end; i++) {
-      pokes.push(this.getPokemon(i));
+
+  getPokemonByRange(offset: number): Observable<Array<any>> {
+    const lo = offset + environment.requestLimit > environment.limitPokemon ? {
+      limit: environment.limitPokemon - offset,
+      offset
+    } : {
+      limit: environment.requestLimit,
+      offset
+    };
+    if (offset === environment.limitPokemon) {
+      return of([]);
+    } else {
+      return this._http.get<any>(`${this.url}?limit=${lo.limit}&offset=${lo.offset}`)
+        .pipe(
+          map(res => res.results.map(r => this._http.get<any>(r.url, {headers: new HttpHeaders({'Accept-Language': 'fr'})}))),
+          exhaustMap((r: Array<Observable<any>>) => forkJoin(r))
+        );
     }
-    return forkJoin(pokes);
   }
 
-  getPokemon(id: number): Observable<any> {
-    return this._http.get(`https://pokeapi.co/api/v2/pokemon/${id.toString()}/`);
-  }
 
   getPokemonByName(name: string): Observable<any> {
-    return this._http.get(`https://pokeapi.co/api/v2/pokemon/${name}/`);
+    return this._http.get(`${this.url}/${name}/`);
   }
 }

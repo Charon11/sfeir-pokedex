@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {PokeapiService} from '../../services/pokeapi.service';
 import {PokemonDetailsDialogComponent} from '../pokemon-details-dialog/pokemon-details-dialog.component';
 import {NgxSpinnerService} from 'ngx-spinner';
+import {tap} from 'rxjs/operators';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-pokedex',
@@ -12,6 +14,7 @@ import {NgxSpinnerService} from 'ngx-spinner';
 export class PokedexComponent implements OnInit {
 
   private _pokemonsArray: Array<any> = [];
+  private _currentOffset = 0;
 
 
   constructor(private _pokeApiService: PokeapiService,
@@ -21,24 +24,27 @@ export class PokedexComponent implements OnInit {
 
   ngOnInit() {
     this.spinner.show();
-    this._pokeApiService.getPokemons().subscribe(res => {
+    this._pokeApiService.getPokemonByRange(this._currentOffset).subscribe(res => {
       res.forEach(pokemon => this._pokemonsArray.push(pokemon));
+      this._currentOffset = this._pokemonsArray.length;
       this.spinner.hide();
     });
   }
 
   onScroll() {
-    if ((this._pokemonsArray.length + 31) >= 151) {
-      this._pokeApiService.getRangePokemons(this._pokemonsArray.length + 1, 151)
-        .subscribe(res => res.forEach(pokemon => this._pokemonsArray.push(pokemon)));
-    } else {
-      this._pokeApiService.getRangePokemons(this._pokemonsArray.length + 1, this._pokemonsArray.length + 31)
-        .subscribe(res => res.forEach(pokemon => this._pokemonsArray.push(pokemon)));
-    }
+    this.loadPokemon();
   }
 
   get pokemons() {
     return this._pokemonsArray;
+  }
+
+  private loadPokemon() {
+    this._pokeApiService.getPokemonByRange(this._currentOffset).subscribe(res => {
+      res.forEach(pokemon => this._pokemonsArray.push(pokemon));
+      this._currentOffset = this._pokemonsArray.length;
+      this.spinner.hide();
+    });
   }
 
   onCardClick(pokemon: any) {
