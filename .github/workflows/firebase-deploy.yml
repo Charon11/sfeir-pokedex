@@ -26,6 +26,6 @@ jobs:
         uses: pizzafox/firebase-action@master
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-          PROJECT_ID: sfeirluxtechnicalevent
+          PROJECT_ID: sfeir-pokedex
         with:
           args: deploy
