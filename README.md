@@ -1,4 +1,4 @@
-# SfeirPokedex
+# Sfeir Pokedex
 
 This project was generated to present a part of the power of the PWA.
 Is using an open Pokemon Api [PokeApi](https://pokeapi.co/)
