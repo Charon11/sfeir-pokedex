@@ -28,7 +28,6 @@
     "@ngx-translate/core": "^11.0.1",
     "@ngx-translate/http-loader": "^4.0.0",
     "core-js": "^3.2.1",
-    "firebase": ">= 5.5.7 <7",
     "material": "^0.3.13",
     "ngx-infinite-scroll": "^8.0.0",
     "ngx-spinner": "^8.0.3",
