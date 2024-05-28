@@ -6,7 +6,11 @@
 }
 
 div {
-  padding-top: 80px
+  padding-top: 80px;
+
+  img {
+    height: 80vh;
+  }
 }
 
 @media screen and (min-width: 960px) {

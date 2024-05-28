@@ -54,9 +54,6 @@ export function createTranslateLoader(http: HttpClient) {
     BrowserAnimationsModule,
     AppRoutingModule
   ],
-  entryComponents: [
-    PokemonDetailsDialogComponent
-  ],
   providers: [],
   bootstrap: [AppComponent]
 })

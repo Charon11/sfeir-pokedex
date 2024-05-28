@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {PokeapiService} from '../../services/pokeapi.service';
 import {TranslateService} from '@ngx-translate/core';
-import {MatDialog} from '@angular/material';
 import {SwUpdate} from '@angular/service-worker';
 
 @Component({
@@ -11,8 +10,7 @@ import {SwUpdate} from '@angular/service-worker';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private _pokeApiService: PokeapiService,
-              translate: TranslateService,
+  constructor(private translate: TranslateService,
               private swUpdate: SwUpdate) {
     // this language will be used as a fallback when a translation isn't found in the current language
     translate.setDefaultLang('fr');
@@ -24,14 +22,16 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     if (this.swUpdate.isEnabled) {
 
-      this.swUpdate.available.subscribe(() => {
+      this.swUpdate.checkForUpdate().then((available) => {
+        if (available) {
+          if (confirm('New version available. Load New Version?')) {
 
-        if (confirm('New version available. Load New Version?')) {
-
-          window.location.reload();
+            window.location.reload();
+          }
         }
       });
     }
+
   }
 
 }
