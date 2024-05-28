@@ -28,8 +28,7 @@
     "@ngx-translate/core": "^11.0.1",
     "@ngx-translate/http-loader": "^4.0.0",
     "core-js": "^3.2.1",
-    "material": "^0.3.13",
-    "ngx-infinite-scroll": "^8.0.0",
+    "ngx-infinite-scroll": "^17.0.0",
     "ngx-spinner": "^17.0.0",
     "rxjs": "~7.8.1",
     "zone.js": "~0.14.6"
