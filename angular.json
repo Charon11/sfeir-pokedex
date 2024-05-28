@@ -59,18 +59,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "sfeir-pokedex:build"
+            "buildTarget": "sfeir-pokedex:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "sfeir-pokedex:build:production"
+              "buildTarget": "sfeir-pokedex:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "sfeir-pokedex:build"
+            "buildTarget": "sfeir-pokedex:build"
           }
         },
         "test": {
