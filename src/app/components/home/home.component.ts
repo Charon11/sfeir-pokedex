@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Capacitor} from "@capacitor/core";
 
 @Component({
   selector: 'app-home',
@@ -12,4 +13,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
+  get platform() {
+    return Capacitor.getPlatform();
+  }
 }

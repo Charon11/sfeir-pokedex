@@ -1,13 +1,10 @@
 {
-  "hosting": [
-    {
-      "target": "sfeir-pokedex",
-      "public": "dist",
-      "ignore": [
-        "firebase.json",
-        "**/.*",
-        "**/node_modules/**"
-      ]
-    }
-  ]
+  "hosting": {
+    "public": "dist/sfeir-pokedex/browser",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
 }

@@ -4,12 +4,14 @@
   width: 100%;
   z-index: 99;
 }
-
+.ios {
+  padding-top: 128px;
+}
 div {
   padding-top: 80px;
 
   img {
-    height: 80vh;
+    height: 60vh;
   }
 }
 

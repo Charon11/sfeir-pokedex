@@ -2,6 +2,10 @@ div {
   padding-top: 80px
 }
 
+.ios {
+  padding-top: 128px;
+}
+
 @media screen and (min-width: 960px) {
 
   app-pokemon {

@@ -3,11 +3,14 @@
   position: fixed;
   width: 100%;
   z-index: 99;
+
+}
+.ios {
+  height: 100px;
+  padding-top: 24px;
 }
 
-div {
-  padding-top: 80px
-}
+
 
 @media screen and (min-width: 960px) {
 

@@ -1,9 +1,14 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "../out-tsc/app",
     "types": []
   },
+  "files": [
+    "main.ts",
+    "polyfills.ts"
+  ],
   "exclude": [
     "test.ts",
     "**/*.spec.ts"

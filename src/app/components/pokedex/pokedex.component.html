@@ -1,4 +1,4 @@
-<div fxLayout.gt-sm="row wrap" fxLayout.lt-md="column" fxLayoutAlign.gt-sm="center start" fxLayoutAlign.lt-md="start center"
+<div [ngClass]="{'ios': platform === 'ios'}" fxLayout.gt-sm="row wrap" fxLayout.lt-md="column" fxLayoutAlign.gt-sm="center start" fxLayoutAlign.lt-md="start center"
      infiniteScroll
      [infiniteScrollDistance]="2"
      [infiniteScrollThrottle]="55"
