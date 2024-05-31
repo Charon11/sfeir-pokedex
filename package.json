@@ -31,6 +31,7 @@
     "@capacitor/angular": "^2.0.3",
     "@capacitor/core": "latest",
     "@capacitor/ios": "^6.0.0",
+    "@capawesome/capacitor-badge": "^6.0.0",
     "@ngx-translate/core": "^15.0.0",
     "@ngx-translate/http-loader": "^8.0.0",
     "core-js": "^3.2.1",

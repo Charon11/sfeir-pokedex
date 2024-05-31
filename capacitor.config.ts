@@ -3,7 +3,14 @@ import type { CapacitorConfig } from '@capacitor/cli';
 const config: CapacitorConfig = {
   appId: 'com.sfeir.lux.pokedex',
   appName: 'pokedex',
-  webDir: 'dist/sfeir-pokedex/browser'
+  webDir: 'dist/sfeir-pokedex/browser',
+  plugins: {
+    Badge: {
+      persist: true,
+      autoClear: false,
+    },
+  },
+
 };
 
 export default config;

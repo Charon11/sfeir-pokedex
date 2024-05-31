@@ -3,10 +3,10 @@ import {MatDialog} from '@angular/material/dialog';
 import {PokeapiService} from '../../services/pokeapi.service';
 import {PokemonDetailsDialogComponent} from '../pokemon-details-dialog/pokemon-details-dialog.component';
 import {NgxSpinnerService} from 'ngx-spinner';
-import {tap} from 'rxjs/operators';
-import {Observable, Subscription} from 'rxjs';
+import {Subscription} from 'rxjs';
 import {Capacitor} from "@capacitor/core";
 import {FirebaseMessagingService} from "../../services/firebase-messaging.service";
+import {Badge} from "@capawesome/capacitor-badge";
 
 @Component({
   selector: 'app-pokedex',
@@ -37,7 +37,8 @@ export class PokedexComponent implements OnInit, OnDestroy {
         if (event !== null) {
           const pokemon = event.notification.data['pokemon']
           if (pokemon) this.onCardClick({name: pokemon})
-          this.firebaseMessagingService.removeAllDeliveredNotifications().pipe(tap(_ => 'removeAllDeliveredNotifications')).subscribe().unsubscribe();
+          this.firebaseMessagingService.removeAllDeliveredNotifications().subscribe().unsubscribe();
+          Badge.clear().then();
         }
       });
     });
