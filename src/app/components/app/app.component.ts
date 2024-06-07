@@ -2,9 +2,12 @@ import {Component, OnInit} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import {SwUpdate} from '@angular/service-worker';
 import {Capacitor} from "@capacitor/core";
-import {FirebaseMessagingService} from "../../services/firebase-messaging.service";
-import {tap} from "rxjs/operators";
 import {Router} from "@angular/router";
+import {AzureNotificationService} from "../../services/azure-notification.service";
+import {tap} from "rxjs";
+import {WebSocketService} from "../../services/WebSocketService";
+import {LocalNotifications} from "@capacitor/local-notifications";
+
 
 @Component({
   selector: 'app-root',
@@ -17,8 +20,9 @@ export class AppComponent implements OnInit {
 
   constructor(private translate: TranslateService,
               private swUpdate: SwUpdate,
-              private firebaseMessagingService: FirebaseMessagingService,
               private router: Router,
+              private azureNotification: AzureNotificationService,
+              private webSocketService: WebSocketService
   ) {
     // this language will be used as a fallback when a translation isn't found in the current language
     this.translate.setDefaultLang('fr');
@@ -26,9 +30,8 @@ export class AppComponent implements OnInit {
     // the lang to use, if the lang isn't available, it will use the current loader to get them
     this.translate.use('fr');
 
-    this.firebaseMessagingService.addTokenReceivedListener();
-    this.firebaseMessagingService.addNotificationReceivedListener();
-    this.firebaseMessagingService.addNotificationActionPerformedListener();
+    this.azureNotification.addListeners().then();
+
   }
 
   ngOnInit() {
@@ -43,27 +46,55 @@ export class AppComponent implements OnInit {
       });
     }
 
-    this.firebaseMessagingService.notificationReceived
+    this.webSocketService.getMessages().subscribe((message) => {
+      console.log('Received message:', message);
+      this.showNotification(message).then();
+    });
+
+
+
+    this.azureNotification.notificationReceived
       .pipe(
         tap(event => console.log("notificationReceived: ", {event}))
       ).subscribe();
-    this.firebaseMessagingService.notificationActionPerformed
+    this.azureNotification.notificationActionPerformed
       .pipe(
         tap(event => console.log("notificationActionPerformed: ", {event}))
       ).subscribe(event => {
       if (event !== null) this.router.navigate(['pokedex'])
     });
-    this.firebaseMessagingService.tokenReceived
+    this.azureNotification.localNotificationActionPerformed
+      .pipe(
+        tap(event => console.log("notificationActionPerformed: ", {event}))
+      ).subscribe(event => {
+      if (event !== null) this.router.navigate(['pokedex'])
+    });
+    this.azureNotification.tokenReceived
       .pipe(
         tap(event => console.log("tokenReceived: ", {event}))
       ).subscribe();
-    this.firebaseMessagingService.subscribeToTopic('pokemon').subscribe(_ => console.log('subscribeTo pokemon'));
 
-    this.firebaseMessagingService.requestPermissions().subscribe();
-    this.firebaseMessagingService.getToken().subscribe(token => console.log(token));
+    this.azureNotification.registerNotifications("pokemon").then();
+
   }
 
   get platform() {
     return Capacitor.getPlatform();
+  }
+
+  async showNotification(message: any) {
+    await LocalNotifications.schedule({
+      notifications: [
+        {
+          title: message.title,
+          body: message.body,
+          id: 1,
+          channelId: 'default',
+          extra: {
+            pokemon : message.pokemon,
+          }
+        },
+      ],
+    });
   }
 }

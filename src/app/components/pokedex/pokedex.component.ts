@@ -5,7 +5,7 @@ import {PokemonDetailsDialogComponent} from '../pokemon-details-dialog/pokemon-d
 import {NgxSpinnerService} from 'ngx-spinner';
 import {Subscription} from 'rxjs';
 import {Capacitor} from "@capacitor/core";
-import {FirebaseMessagingService} from "../../services/firebase-messaging.service";
+import {AzureNotificationService} from "../../services/azure-notification.service";
 import {Badge} from "@capawesome/capacitor-badge";
 
 @Component({
@@ -18,12 +18,13 @@ export class PokedexComponent implements OnInit, OnDestroy {
   private _pokemonsArray: Array<any> = [];
   private _currentOffset = 0;
   private notificationAction: Subscription;
+  private localNotificationAction: Subscription;
 
 
   constructor(private _pokeApiService: PokeapiService,
               private spinner: NgxSpinnerService,
               private dialog: MatDialog,
-              private firebaseMessagingService: FirebaseMessagingService,
+              private azureNotification: AzureNotificationService
   ) {
   }
 
@@ -33,14 +34,24 @@ export class PokedexComponent implements OnInit, OnDestroy {
       res.forEach(pokemon => this._pokemonsArray.push(pokemon));
       this._currentOffset = this._pokemonsArray.length;
       this.spinner.hide();
-      this.notificationAction = this.firebaseMessagingService.notificationActionPerformed.subscribe(event => {
-        if (event !== null) {
-          const pokemon = event.notification.data['pokemon']
-          if (pokemon) this.onCardClick({name: pokemon})
-          this.firebaseMessagingService.removeAllDeliveredNotifications().subscribe().unsubscribe();
-          Badge.clear().then();
-        }
-      });
+    });
+    this.notificationAction = this.azureNotification.notificationActionPerformed.subscribe(event => {
+      if (event !== null) {
+        this.dialog.closeAll();
+        this.spinner.hide();
+        const pokemon = event.notification.data['pokemon']
+        if (pokemon) this.onCardClick({name: pokemon})
+        Badge.clear().then();
+      }
+    });
+    this.localNotificationAction = this.azureNotification.localNotificationActionPerformed.subscribe(event => {
+      if (event !== null) {
+        this.dialog.closeAll();
+        this.spinner.hide();
+        const pokemon = event.notification.extra['pokemon']
+        if (pokemon) this.onCardClick({name: pokemon})
+        Badge.clear().then();
+      }
     });
   }
 
