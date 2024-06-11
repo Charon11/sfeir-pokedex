@@ -5,17 +5,11 @@ project(':capacitor-android').projectDir = new File('../node_modules/@capacitor/
 include ':capacitor-device'
 project(':capacitor-device').projectDir = new File('../node_modules/@capacitor/device/android')
 
-include ':capacitor-local-notifications'
-project(':capacitor-local-notifications').projectDir = new File('../node_modules/@capacitor/local-notifications/android')
-
 include ':capacitor-push-notifications'
 project(':capacitor-push-notifications').projectDir = new File('../node_modules/@capacitor/push-notifications/android')
 
 include ':capawesome-capacitor-badge'
 project(':capawesome-capacitor-badge').projectDir = new File('../node_modules/@capawesome/capacitor-badge/android')
-
-include ':jcesarmobile-ssl-skip'
-project(':jcesarmobile-ssl-skip').projectDir = new File('../node_modules/@jcesarmobile/ssl-skip/android')
 
 include ':jonz94-capacitor-azure-notification-hubs'
 project(':jonz94-capacitor-azure-notification-hubs').projectDir = new File('../node_modules/@jonz94/capacitor-azure-notification-hubs/android')
