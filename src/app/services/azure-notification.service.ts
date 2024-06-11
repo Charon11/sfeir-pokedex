@@ -2,8 +2,7 @@ import {Injectable} from '@angular/core';
 import { Device } from '@capacitor/device';
 import {ActionPerformed, PushNotifications, PushNotificationSchema} from '@capacitor/push-notifications';
 import {AzureNotificationHubs, Token} from '@jonz94/capacitor-azure-notification-hubs';
-import {BehaviorSubject, from, Observable, Subject} from "rxjs";
-import {LocalNotifications, ActionPerformed as LocalActionPerformed} from "@capacitor/local-notifications";
+import {BehaviorSubject, Observable, Subject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +12,6 @@ export class AzureNotificationService {
   private tokenReceivedSubject: Subject<Token> = new Subject<Token>();
   private notificationReceivedSubject: Subject<PushNotificationSchema> = new Subject<PushNotificationSchema>();
   private notificationActionPerformedSubject: BehaviorSubject<ActionPerformed> = new BehaviorSubject<ActionPerformed>(null);
-  private localNotificationActionPerformedSubject: BehaviorSubject<LocalActionPerformed> = new BehaviorSubject<LocalActionPerformed>(null);
 
   get tokenReceived(): Observable<Token> {
     return this.tokenReceivedSubject.asObservable();
@@ -25,10 +23,6 @@ export class AzureNotificationService {
 
   get notificationActionPerformed(): Observable<ActionPerformed> {
     return this.notificationActionPerformedSubject.asObservable();
-  }
-
-  get localNotificationActionPerformed(): Observable<LocalActionPerformed> {
-    return this.localNotificationActionPerformedSubject.asObservable();
   }
 
   constructor() {}
@@ -49,10 +43,6 @@ export class AzureNotificationService {
     await PushNotifications.addListener("pushNotificationActionPerformed", notification => {
       this.notificationActionPerformedSubject.next(notification);
     });
-
-     await LocalNotifications.addListener('localNotificationActionPerformed', notification => {
-       this.localNotificationActionPerformedSubject.next(notification);
-     });
 
   }
 

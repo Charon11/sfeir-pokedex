@@ -18,7 +18,6 @@ export class PokedexComponent implements OnInit, OnDestroy {
   private _pokemonsArray: Array<any> = [];
   private _currentOffset = 0;
   private notificationAction: Subscription;
-  private localNotificationAction: Subscription;
 
 
   constructor(private _pokeApiService: PokeapiService,
@@ -40,15 +39,6 @@ export class PokedexComponent implements OnInit, OnDestroy {
         this.dialog.closeAll();
         this.spinner.hide();
         const pokemon = event.notification.data['pokemon']
-        if (pokemon) this.onCardClick({name: pokemon})
-        Badge.clear().then();
-      }
-    });
-    this.localNotificationAction = this.azureNotification.localNotificationActionPerformed.subscribe(event => {
-      if (event !== null) {
-        this.dialog.closeAll();
-        this.spinner.hide();
-        const pokemon = event.notification.extra['pokemon']
         if (pokemon) this.onCardClick({name: pokemon})
         Badge.clear().then();
       }

@@ -5,8 +5,6 @@ import {Capacitor} from "@capacitor/core";
 import {Router} from "@angular/router";
 import {AzureNotificationService} from "../../services/azure-notification.service";
 import {tap} from "rxjs";
-import {WebSocketService} from "../../services/WebSocketService";
-import {LocalNotifications} from "@capacitor/local-notifications";
 
 
 @Component({
@@ -21,8 +19,7 @@ export class AppComponent implements OnInit {
   constructor(private translate: TranslateService,
               private swUpdate: SwUpdate,
               private router: Router,
-              private azureNotification: AzureNotificationService,
-              private webSocketService: WebSocketService
+              private azureNotification: AzureNotificationService
   ) {
     // this language will be used as a fallback when a translation isn't found in the current language
     this.translate.setDefaultLang('fr');
@@ -46,24 +43,12 @@ export class AppComponent implements OnInit {
       });
     }
 
-    this.webSocketService.getMessages().subscribe((message) => {
-      console.log('Received message:', message);
-      this.showNotification(message).then();
-    });
-
-
 
     this.azureNotification.notificationReceived
       .pipe(
         tap(event => console.log("notificationReceived: ", {event}))
       ).subscribe();
     this.azureNotification.notificationActionPerformed
-      .pipe(
-        tap(event => console.log("notificationActionPerformed: ", {event}))
-      ).subscribe(event => {
-      if (event !== null) this.router.navigate(['pokedex'])
-    });
-    this.azureNotification.localNotificationActionPerformed
       .pipe(
         tap(event => console.log("notificationActionPerformed: ", {event}))
       ).subscribe(event => {
@@ -80,21 +65,5 @@ export class AppComponent implements OnInit {
 
   get platform() {
     return Capacitor.getPlatform();
-  }
-
-  async showNotification(message: any) {
-    await LocalNotifications.schedule({
-      notifications: [
-        {
-          title: message.title,
-          body: message.body,
-          id: 1,
-          channelId: 'default',
-          extra: {
-            pokemon : message.pokemon,
-          }
-        },
-      ],
-    });
   }
 }
