@@ -2,11 +2,15 @@ PODS:
   - Capacitor (6.0.0):
     - CapacitorCordova
   - CapacitorCordova (6.0.0)
-  - CapacitorFirebaseMessaging (6.0.0):
+  - CapacitorPushNotifications (6.0.1):
     - Capacitor
-    - FirebaseMessaging (~> 10.24)
   - CapawesomeCapacitorBadge (6.0.0):
     - Capacitor
+  - Firebase/CoreOnly (10.25.0):
+    - FirebaseCore (= 10.25.0)
+  - Firebase/Messaging (10.25.0):
+    - Firebase/CoreOnly
+    - FirebaseMessaging (~> 10.25.0)
   - FirebaseCore (10.25.0):
     - FirebaseCoreInternal (~> 10.0)
     - GoogleUtilities/Environment (~> 7.12)
@@ -66,11 +70,13 @@ PODS:
 DEPENDENCIES:
   - "Capacitor (from `../../node_modules/@capacitor/ios`)"
   - "CapacitorCordova (from `../../node_modules/@capacitor/ios`)"
-  - "CapacitorFirebaseMessaging (from `../../node_modules/@capacitor-firebase/messaging`)"
+  - "CapacitorPushNotifications (from `../../node_modules/@capacitor/push-notifications`)"
   - "CapawesomeCapacitorBadge (from `../../node_modules/@capawesome/capacitor-badge`)"
+  - Firebase/Messaging
 
 SPEC REPOS:
   trunk:
+    - Firebase
     - FirebaseCore
     - FirebaseCoreInternal
     - FirebaseInstallations
@@ -85,16 +91,17 @@ EXTERNAL SOURCES:
     :path: "../../node_modules/@capacitor/ios"
   CapacitorCordova:
     :path: "../../node_modules/@capacitor/ios"
-  CapacitorFirebaseMessaging:
-    :path: "../../node_modules/@capacitor-firebase/messaging"
+  CapacitorPushNotifications:
+    :path: "../../node_modules/@capacitor/push-notifications"
   CapawesomeCapacitorBadge:
     :path: "../../node_modules/@capawesome/capacitor-badge"
 
 SPEC CHECKSUMS:
   Capacitor: 559d073c4ca6c27f8e7002c807eea94c3ba435a9
   CapacitorCordova: 8c4bfdf69368512e85b1d8b724dd7546abeb30af
-  CapacitorFirebaseMessaging: 449f81e1fffcee3f3934680200742d148b9f269e
+  CapacitorPushNotifications: 293fabe42c7229756078e81f2d3a60394ba4e5d8
   CapawesomeCapacitorBadge: 3d0f281ad8e4a4f8db8c3d88b7622a7f4c413342
+  Firebase: 0312a2352584f782ea56f66d91606891d4607f06
   FirebaseCore: 7ec4d0484817f12c3373955bc87762d96842d483
   FirebaseCoreInternal: 910a81992c33715fec9263ca7381d59ab3a750b7
   FirebaseInstallations: 91950fe859846fff0fbd296180909dd273103b09
@@ -104,6 +111,6 @@ SPEC CHECKSUMS:
   nanopb: 438bc412db1928dac798aa6fd75726007be04262
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
 
-PODFILE CHECKSUM: fc734294cf1ee9997ef2550ddeef48a2b02416a9
+PODFILE CHECKSUM: 5f10ab48f57519aae39ff719db36bf8dc5550fc0
 
 COCOAPODS: 1.15.2

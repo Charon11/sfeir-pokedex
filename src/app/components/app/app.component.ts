@@ -57,10 +57,12 @@ export class AppComponent implements OnInit {
       .pipe(
         tap(event => console.log("tokenReceived: ", {event}))
       ).subscribe();
-    this.firebaseMessagingService.subscribeToTopic('pokemon').subscribe(_ => console.log('subscribeTo pokemon'));
+    //this.firebaseMessagingService.subscribeToTopic('pokemon').subscribe(_ => console.log('subscribeTo pokemon'));
 
+    this.firebaseMessagingService.checkPermissions().subscribe();
     this.firebaseMessagingService.requestPermissions().subscribe();
-    this.firebaseMessagingService.getToken().subscribe(token => console.log(token));
+    this.firebaseMessagingService.register().subscribe();
+    this.firebaseMessagingService.tokenReceived.subscribe(token => console.log(token.value));
   }
 
   get platform() {
