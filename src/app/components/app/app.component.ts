@@ -5,6 +5,7 @@ import {Capacitor} from "@capacitor/core";
 import {FirebaseMessagingService} from "../../services/firebase-messaging.service";
 import {tap} from "rxjs/operators";
 import {Router} from "@angular/router";
+import {Badge} from "@capawesome/capacitor-badge";
 
 @Component({
   selector: 'app-root',
@@ -46,7 +47,21 @@ export class AppComponent implements OnInit {
     this.firebaseMessagingService.notificationReceived
       .pipe(
         tap(event => console.log("notificationReceived: ", {event}))
-      ).subscribe();
+      ).subscribe(event => {
+      if (event !== null) {
+        console.log("notificationReceived")
+        const badge = event.notification.data['badge']
+        if (badge) {
+          console.log("Badge found, set to ", badge)
+          Badge.set({count: +badge}).then();
+        } else {
+          this.firebaseMessagingService.getDeliveredNotifications().subscribe(n => {
+            console.log("Badge not found, set to ", n.length)
+            Badge.set({count: n.length}).then()
+          });
+        }
+      }
+    });
     this.firebaseMessagingService.notificationActionPerformed
       .pipe(
         tap(event => console.log("notificationActionPerformed: ", {event}))
