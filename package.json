@@ -27,7 +27,6 @@
     "@angular/router": "^17.3.10",
     "@angular/service-worker": "^17.3.10",
     "@capacitor/android": "^6.0.0",
-    "@capacitor/angular": "^2.0.3",
     "@capacitor/core": "latest",
     "@capacitor/ios": "^6.0.0",
     "@capacitor/push-notifications": "^6.0.1",
