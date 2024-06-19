@@ -54,7 +54,8 @@ export class AppComponent implements OnInit {
         if (badge) {
           console.log("Badge found, set to ", badge)
           Badge.set({count: +badge}).then();
-        } else {
+        } else if (event.notification.data['aps'] !== undefined &&
+         event.notification.data['aps']['alert'] !== undefined) {
           this.firebaseMessagingService.getDeliveredNotifications().subscribe(n => {
             console.log("Badge not found, set to ", n.length)
             Badge.set({count: n.length}).then()
