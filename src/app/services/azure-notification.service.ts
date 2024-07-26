@@ -67,7 +67,7 @@ export class AzureNotificationService {
 
     await AzureNotificationHubs.register({
       notificationHubName: 'pokedex',
-      connectionString: 'Endpoint=sb://raif-pokedex.servicebus.windows.net/;SharedAccessKeyName=DefaultListenSharedAccessSignature;SharedAccessKey=eZoHaEYQIfq0h0krx6YM8mqiRK5WK30WG5Gd5kMjcIw=',
+      connectionString: 'Endpoint=sb://pokedex.servicebus.windows.net/;SharedAccessKeyName=DefaultListenSharedAccessSignature;SharedAccessKey=pJXDBcllp3J5LCGZciGp12+NYusswVTFr5ZCysyYoiw=',
       deviceTag: tag ?? myDeviceTag,
     });
   }
